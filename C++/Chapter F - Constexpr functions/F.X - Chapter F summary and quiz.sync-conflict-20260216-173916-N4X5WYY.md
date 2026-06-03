@@ -13,10 +13,8 @@ A
 is a function that must evaluate at compile-time. Consteval functions otherwise follow the same rules as constexpr functions.
 Quiz time
 
-Quiz time
 Question #1
 
-Question #1
 Add const and/or constexpr to the following program:
 
 Add
@@ -26,7 +24,7 @@ and/or
 to the following program:
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 // gets tower height from user and returns it
 double getTowerHeight()
@@ -83,7 +81,7 @@ return 0;
 
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 // This function should not be made constexpr because output and input can only be done at runtime.
 // The versions of `operator<<` and `operator>>` that do output and input don't support constexpr.
@@ -150,12 +148,12 @@ return 0;
 }
 ```
 
-[Next lesson 12.1Introduction to compound data types](https://www.learncpp.com/cpp-tutorial/introduction-to-compound-data-types/)
+[[Next lesson 12.1Introduction to compound data types]]
 Next lesson
 12.1
 Introduction to compound data types
 [Back to table of contents](/)
-[Previous lesson F.4Constexpr functions (part 4)](https://www.learncpp.com/cpp-tutorial/constexpr-functions-part-4/)
+[[Previous lesson F.4Constexpr functions (part 4)]]
 Previous lesson
 F.4
 Constexpr functions (part 4)

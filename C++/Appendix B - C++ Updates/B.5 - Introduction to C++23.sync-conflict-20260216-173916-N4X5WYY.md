@@ -11,8 +11,7 @@ For your interest, here’s a list of the major changes that C++23 adds. Note th
 Constexpr <cmath> (e.g.
 `std::abs()`
 ), and <cstdlib> (
-[6.7 -- Relational operators and floating point comparisons](https://www.learncpp.com/cpp-tutorial/relational-operators-and-floating-point-comparisons/)
-6.7 -- Relational operators and floating point comparisons
+[[6.7 -- Relational operators and floating point comparisons]]
 ).
 Constexpr
 `std::unique_ptr`
@@ -29,20 +28,17 @@ and
 Literal suffixes for
 `std::size_t`
 and the corresponding signed type (
-[5.2 -- Literals](https://www.learncpp.com/cpp-tutorial/literals/)
-5.2 -- Literals
+[[5.2 -- Literals]]
 ).
 Multidimensional subscript
 `operator[]`
 (Mentioned in lesson
-[17.13 -- Multidimensional std::array](https://www.learncpp.com/cpp-tutorial/multidimensional-stdarray/)
-17.13 -- Multidimensional std::array
+[[17.13 -- Multidimensional std::array]]
 ).
 Multidimensional span
 `std::mdspan`
 (
-[17.13 -- Multidimensional std::array](https://www.learncpp.com/cpp-tutorial/multidimensional-stdarray/)
-17.13 -- Multidimensional std::array
+[[17.13 -- Multidimensional std::array]]
 ).
 Preprocessor directives
 `#elifdef`
@@ -81,21 +77,19 @@ and
 (no lesson yet)
 `std::to_underlying`
 to get the underlying type of enum (
-[13.6 -- Scoped enumerations (enum classes)](https://www.learncpp.com/cpp-tutorial/scoped-enumerations-enum-classes/)
-13.6 -- Scoped enumerations (enum classes)
+[[13.6 -- Scoped enumerations (enum classes)]]
 ).
 `std::unreachable()`
 (no lesson yet).
 Using unknown pointers and references in constant expressions (
-[17.2 -- std::array length and indexing](https://www.learncpp.com/cpp-tutorial/stdarray-length-and-indexing/)
-17.2 -- std::array length and indexing
+[[17.2 -- std::array length and indexing]]
 ).
-[Next lessonC.1The end?](https://www.learncpp.com/cpp-tutorial/appendix-c-the-end/)
+[[Next lessonC.1The end?]]
 Next lesson
 C.1
 The end?
 [Back to table of contents](/)
-[Previous lessonB.4Introduction to C++20](https://www.learncpp.com/cpp-tutorial/introduction-to-c20/)
+[[Previous lessonB.4Introduction to C++20]]
 Previous lesson
 B.4
 Introduction to C++20

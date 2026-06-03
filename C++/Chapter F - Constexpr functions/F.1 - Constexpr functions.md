@@ -1,8 +1,7 @@
 # F.1 — Constexpr functions
 
 In lesson
-[5.6 -- Constexpr variables](https://www.learncpp.com/cpp-tutorial/constexpr-variables/)
-5.6 -- Constexpr variables
+[[5.6 -- Constexpr variables]]
 , we introduced the
 `constexpr`
 keyword, which we used to create compile-time (symbolic) constants. We also introduced constant expressions, which are expressions that can be evaluated at compile-time rather than runtime.
@@ -12,21 +11,21 @@ One challenge with constant expressions is that function call to a normal functi
 Consider the following program:
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
     constexpr double radius { 3.0 };
     constexpr double pi { 3.14159265359 };
     constexpr double circumference { 2.0 * radius * pi };
-    
+
     std::cout << "Our circle has circumference " << circumference << "\n";
 
-return 0;    
+return 0;
 }
 ```
 
-#include <iostream> int main() { constexpr double radius { 3.0 }; constexpr double pi { 3.14159265359 }; constexpr double circumference { 2.0 * radius * pi }; std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
+# include <iostream> int main() { constexpr double radius { 3.0 }; constexpr double pi { 3.14159265359 }; constexpr double circumference { 2.0 * radius * pi }; std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
 
 This produces the result:
 ```
@@ -42,7 +41,7 @@ and
 ). So let’s make it a function instead:
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 double calcCircumference(double radius)
 {
@@ -53,14 +52,14 @@ double calcCircumference(double radius)
 int main()
 {
     constexpr double circumference { calcCircumference(3.0) }; // compile error
-    
+
     std::cout << "Our circle has circumference " << circumference << "\n";
 
-return 0;    
+return 0;
 }
 ```
 
-#include <iostream> double calcCircumference(double radius) { constexpr double pi { 3.14159265359 }; return 2.0 * pi * radius; } int main() { constexpr double circumference { calcCircumference(3.0) }; // compile error std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
+# include <iostream> double calcCircumference(double radius) { constexpr double pi { 3.14159265359 }; return 2.0 * pi * radius; } int main() { constexpr double circumference { calcCircumference(3.0) }; // compile error std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
 
 This code is much cleaner. It also doesn’t compile. Constexpr variable
 `circumference`
@@ -88,7 +87,7 @@ Key insightThe constexpr keyword is used to signal to the compiler and other dev
 Here’s the same example as above, but using a constexpr function:
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 constexpr double calcCircumference(double radius) // now a constexpr function
 {
@@ -99,14 +98,14 @@ constexpr double calcCircumference(double radius) // now a constexpr function
 int main()
 {
     constexpr double circumference { calcCircumference(3.0) }; // now compiles
-    
+
     std::cout << "Our circle has circumference " << circumference << "\n";
 
-return 0;    
+return 0;
 }
 ```
 
-#include <iostream> constexpr double calcCircumference(double radius) // now a constexpr function { constexpr double pi { 3.14159265359 }; return 2.0 * pi * radius; } int main() { constexpr double circumference { calcCircumference(3.0) }; // now compiles std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
+# include <iostream> constexpr double calcCircumference(double radius) // now a constexpr function { constexpr double pi { 3.14159265359 }; return 2.0 * pi * radius; } int main() { constexpr double circumference { calcCircumference(3.0) }; // now compiles std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
 
 Because
 `calcCircumference()`
@@ -117,8 +116,7 @@ is now a constexpr function, it can be used in a constant expression, such as th
 Constexpr functions can be evaluated at compile time
 
 In lesson
-[5.5 -- Constant expressions](https://www.learncpp.com/cpp-tutorial/constant-expressions/)
-5.5 -- Constant expressions
+[[5.5 -- Constant expressions]]
 , we noted that in contexts that require a constant expression (such as the initialization of a constexpr variable), a constant expression is required to evaluate at compile-time. If a required constant expression contains a constexpr function call, that constexpr function call must evaluate at compile-time.
 
 In our example above, variable
@@ -138,7 +136,7 @@ is replaced with the result of the function call, which is
 . In other words, the compiler will compile this:
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 constexpr double calcCircumference(double radius)
 {
@@ -149,14 +147,14 @@ constexpr double calcCircumference(double radius)
 int main()
 {
     constexpr double circumference { 18.8496 };
-    
+
     std::cout << "Our circle has circumference " << circumference << "\n";
 
-return 0;    
+return 0;
 }
 ```
 
-#include <iostream> constexpr double calcCircumference(double radius) { constexpr double pi { 3.14159265359 }; return 2.0 * pi * radius; } int main() { constexpr double circumference { 18.8496 }; std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
+# include <iostream> constexpr double calcCircumference(double radius) { constexpr double pi { 3.14159265359 }; return 2.0 * pi * radius; } int main() { constexpr double circumference { 18.8496 }; std::cout << "Our circle has circumference " << circumference << "\n"; return 0; }
 
 To evaluate at compile-time, two other things must also be true:
 - The call to the constexpr function must have arguments that are known at compile time (e.g. are constant expressions).All statements and expressions within the constexpr function must be evaluatable at compile-time.
@@ -172,7 +170,7 @@ here
 Constexpr functions can also be evaluated at runtime, in which case they will return a non-constexpr result. For example:
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 constexpr int greater(int x, int y)
 {
@@ -190,7 +188,7 @@ return 0;
 }
 ```
 
-#include <iostream> constexpr int greater(int x, int y) { return (x > y ? x : y); } int main() { int x{ 5 }; // not constexpr int y{ 6 }; // not constexpr std::cout << greater(x, y) << " is greater!\n"; // will be evaluated at runtime return 0; }
+# include <iostream> constexpr int greater(int x, int y) { return (x > y ? x : y); } int main() { int x{ 5 }; // not constexpr int y{ 6 }; // not constexpr std::cout << greater(x, y) << " is greater!\n"; // will be evaluated at runtime return 0; }
 
 In this example, because arguments
 `x`
@@ -210,15 +208,14 @@ Otherwise, you’d need to have separate functions (a function with a constexpr 
 Remind me again why we care whether our functions execute at compile-time?Now would be a great time to review the benefits that compile-time programming techniques can provide: 5.5 -- Constant expressions.Next lessonF.2Constexpr functions (part 2)Back to table of contentsPrevious lesson11.xChapter 11 summary and quiz
 
 Now would be a great time to review the benefits that compile-time programming techniques can provide:
-[5.5 -- Constant expressions](https://www.learncpp.com/cpp-tutorial/constant-expressions/#compiletimebenefits)
-5.5 -- Constant expressions
+[[5.5 -- Constant expressions]]
 .
-[Next lessonF.2Constexpr functions (part 2)](https://www.learncpp.com/cpp-tutorial/constexpr-functions-part-2/)
+[[Next lessonF.2Constexpr functions (part 2)]]
 Next lesson
 F.2
 Constexpr functions (part 2)
 [Back to table of contents](/)
-[Previous lesson11.xChapter 11 summary and quiz](https://www.learncpp.com/cpp-tutorial/chapter-11-summary-and-quiz/)
+[[Previous lesson11.xChapter 11 summary and quiz]]
 Previous lesson
 11.x
 Chapter 11 summary and quiz

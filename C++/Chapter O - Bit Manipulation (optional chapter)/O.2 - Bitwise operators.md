@@ -1,7 +1,6 @@
 O.2 — Bitwise operators
 The bitwise operators
 
-The bitwise operators
 C++ provides 6 bit manipulation operators, often called bitwise operators:
 
 C++ provides 6 bit manipulation operators, often called
@@ -75,13 +74,10 @@ and
 are different.
 These are non-modifying operators (they do not modify their operands).
 
-These are non-modifying operators (they do not modify their operands).
 Author’s note
 
-Author’s note
 In the following examples, we will largely be working with 4-bit binary values. This is for the sake of convenience and keeping the examples simple. In actual programs, the number of bits used is based on the size of the object (e.g. a 2 byte object would store 16 bits).
 
-In the following examples, we will largely be working with 4-bit binary values. This is for the sake of convenience and keeping the examples simple. In actual programs, the number of bits used is based on the size of the object (e.g. a 2 byte object would store 16 bits).
 To improve readability, we may also omit the 0b prefix for binary literals outside of code examples (e.g. instead of 0b0101, we may opt to use 0101).
 
 To improve readability, we may also omit the
@@ -105,7 +101,6 @@ Avoid using the bitwise operators with signed integral operands, as many operato
 ).
 Best practice
 
-Best practice
 To avoid surprises, use the bitwise operators with unsigned integral operands or std::bitset.
 
 To avoid surprises, use the bitwise operators with unsigned integral operands or
@@ -113,7 +108,6 @@ To avoid surprises, use the bitwise operators with unsigned integral operands or
 .
 Bitwise left shift (<<) and bitwise right shift (>>) operators
 
-Bitwise left shift (<<) and bitwise right shift (>>) operators
 The bitwise left shift (<<) operator shifts bits to the left. The left operand is an expression that provides the initial bit sequence, and the right operand is an integer number that specifies the number of bit-positions to move the bits over by. For example, when we write x << 2, we are saying “produce a value where the bits from x have been moved 2 positions to the left.”
 
 The
@@ -164,15 +158,13 @@ Here are some examples of right shifting the bit sequence
 1100 />/> 1 is 0110 1100 />/> 2 is 0011 1100 />/> 3 is 0001
 Note that in the third case we shifted a bit off the right end of the number, so it is lost.
 
-Note that in the third case we shifted a bit off the right end of the number, so it is lost.
 Let’s do an example in C++ that you can compile and run:
 
-Let’s do an example in C++ that you can compile and run:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -186,11 +178,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::bitset<4> x { 0b1100 }; std::cout << x << '\n'; std::cout << (x >> 1) << '\n'; // shift right by 1, yielding 0110 std::cout << (x << 1) << '\n'; // shift left by 1, yielding 1000 return 0; }
+# include <bitset> #include <iostream> int main() { std::bitset<4> x { 0b1100 }; std::cout << x << '\n'; std::cout << (x >> 1) << '\n'; // shift right by 1, yielding 0110 std::cout << (x << 1) << '\n'; // shift left by 1, yielding 1000 return 0; }
 
 This prints:
 
-This prints:
 ```
 1100
 0110
@@ -200,7 +191,6 @@ This prints:
 1100 0110 1000
 For advanced readers
 
-For advanced readers
 Bit-shifting in C++ is endian-agnostic. Left-shift is always towards the most significant bit, and right-shift towards the least significant bit.
 
 Bit-shifting in C++ is
@@ -209,10 +199,8 @@ endian
 -agnostic. Left-shift is always towards the most significant bit, and right-shift towards the least significant bit.
 What!? Aren’t operator<< and operator>> used for input and output?
 
-What!? Aren’t operator<< and operator>> used for input and output?
 They sure are.
 
-They sure are.
 Programs today typically do not make much use of the bitwise left and right shift operators to shift bits. Rather, the bitwise left shift operator is more often used with std::cout (or other output stream objects) to output text. Consider the following program:
 
 Programs today typically do not make much use of the bitwise left and right shift operators to shift bits. Rather, the bitwise left shift operator is more often used with
@@ -220,9 +208,9 @@ Programs today typically do not make much use of the bitwise left and right shif
 (or other output stream objects) to output text. Consider the following program:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -234,11 +222,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { unsigned int x { 0b0100 }; x = x << 1; // use operator<< for left shift std::cout << std::bitset<4>{ x } << '\n'; // use operator<< for output return 0; }
+# include <bitset> #include <iostream> int main() { unsigned int x { 0b0100 }; x = x << 1; // use operator<< for left shift std::cout << std::bitset<4>{ x } << '\n'; // use operator<< for output return 0; }
 
 This program prints:
 
-This program prints:
 ```
 1000
 ```
@@ -262,14 +249,12 @@ The same applies for
 .
 Related content
 
-Related content
 This ability for operators to change their behavior based on the type of the arguments leverages a feature called operator overloading, which we introduce later in lesson 13.5 -- Introduction to overloading the I/O operators.
 
 This ability for operators to change their behavior based on the type of the arguments leverages a feature called
 *operator overloading*
 , which we introduce later in lesson
-[13.5 -- Introduction to overloading the I/O operators](https://www.learncpp.com/cpp-tutorial/introduction-to-overloading-the-i-o-operators/)
-13.5 -- Introduction to overloading the I/O operators
+[[13.5 -- Introduction to overloading the I/O operators]]
 .
 Note that if you’re using operator<< for both output and left shift, parenthesization is required to use for left-shifting:
 
@@ -278,9 +263,9 @@ Note that if you’re using
 for both output and left shift, parenthesization is required to use for left-shifting:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -293,11 +278,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::bitset<4> x{ 0b0110 }; std::cout << x << 1 << '\n'; // print value of x (0110), then 1 std::cout << (x << 1) << '\n'; // print x left shifted by 1 (1100) return 0; }
+# include <bitset> #include <iostream> int main() { std::bitset<4> x{ 0b0110 }; std::cout << x << 1 << '\n'; // print value of x (0110), then 1 std::cout << (x << 1) << '\n'; // print x left shifted by 1 (1100) return 0; }
 
 This prints:
 
-This prints:
 ```
 01101
 1100
@@ -321,7 +305,6 @@ left-shifted by
 ).
 Bitwise NOT
 
-Bitwise NOT
 The bitwise NOT operator (~) is conceptually straightforward: It simply flips each bit from a 0 to a 1, or vice versa.
 
 The
@@ -339,18 +322,15 @@ to a
 ~0011 is 1100 ~0000 0100 is 1111 1011
 For advanced readers
 
-For advanced readers
 When interpreted as an integer, the number of bits in the result of a bitwise NOT affects the value produced.
 
-When interpreted as an integer, the number of bits in the result of a bitwise NOT affects the value produced.
 The following program illustrates this:
 
-The following program illustrates this:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -363,7 +343,7 @@ std::cout << "Initial values:\n";
 
 b4 = ~b4; // flip b4 to 1011
     b8 = ~b8; // flip b8 to 1111 1011
-    
+
     std::cout << "After bitwise NOT:\n";
     std::cout << "Bits: " << b4 << ' ' << b8 << '\n';
     std::cout << "Values: " << b4.to_ulong() << ' ' << b8.to_ulong() << '\n';
@@ -372,11 +352,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::bitset<4> b4{ 0b100 }; // b4 is 0100 std::bitset<8> b8{ 0b100 }; // b8 is 0000 0100 std::cout << "Initial values:\n"; std::cout << "Bits: " << b4 << ' ' << b8 << '\n'; std::cout << "Values: " << b4.to_ulong() << ' ' << b8.to_ulong() << "\n\n"; b4 = ~b4; // flip b4 to 1011 b8 = ~b8; // flip b8 to 1111 1011 std::cout << "After bitwise NOT:\n"; std::cout << "Bits: " << b4 << ' ' << b8 << '\n'; std::cout << "Values: " << b4.to_ulong() << ' ' << b8.to_ulong() << '\n'; return 0; }
+# include <bitset> #include <iostream> int main() { std::bitset<4> b4{ 0b100 }; // b4 is 0100 std::bitset<8> b8{ 0b100 }; // b8 is 0000 0100 std::cout << "Initial values:\n"; std::cout << "Bits: " << b4 << ' ' << b8 << '\n'; std::cout << "Values: " << b4.to_ulong() << ' ' << b8.to_ulong() << "\n\n"; b4 = ~b4; // flip b4 to 1011 b8 = ~b8; // flip b8 to 1111 1011 std::cout << "After bitwise NOT:\n"; std::cout << "Bits: " << b4 << ' ' << b8 << '\n'; std::cout << "Values: " << b4.to_ulong() << ' ' << b8.to_ulong() << '\n'; return 0; }
 
 This prints:
 
-This prints:
 ```
 Initial values:
 Bits: 0100 00000100
@@ -436,7 +415,6 @@ has more leading ones than
 .
 Bitwise OR
 
-Bitwise OR
 Bitwise OR (|) works much like its logical OR counterpart. If you remember, logical OR evaluates to true (1) if either of the operands are true, otherwise it evaluates to false (0).
 
 **Bitwise OR**
@@ -455,7 +433,6 @@ are
 ).
 However, whereas logical OR is applied to the entire operand (to produce a single true or false result), bitwise OR is applied to each pair of bits in the operands (to produce a single true or false result for each bit).
 
-However, whereas logical OR is applied to the entire operand (to produce a single true or false result), bitwise OR is applied to each pair of bits in the operands (to produce a single true or false result for each bit).
 Let’s illustrate this with an example. Consider the expression 0b0101 | 0b0110.
 
 Let’s illustrate this with an example. Consider the expression
@@ -463,10 +440,8 @@ Let’s illustrate this with an example. Consider the expression
 .
 Tip
 
-Tip
 To do any binary bitwise operation by hand, it is easiest to line the two operands up like this:
 
-To do any binary bitwise operation by hand, it is easiest to line the two operands up like this:
 ```
 0 1 0 1 OR (or whatever bitwise operation you are doing)
 0 1 1 0
@@ -531,9 +506,9 @@ Our result is
 binary.
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -543,11 +518,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0101 } | std::bitset<4>{ 0b0110 }) << '\n'; return 0; }
+# include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0101 } | std::bitset<4>{ 0b0110 }) << '\n'; return 0; }
 
 This prints:
 
-This prints:
 ```
 0111
 ```
@@ -573,12 +547,11 @@ We can do the same thing to compound bitwise OR expressions, such as
 0 1 1 1 OR 0 0 1 1 OR 0 0 0 1 -------- 0 1 1 1
 Here’s code for the above:
 
-Here’s code for the above:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -588,11 +561,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0111 } | std::bitset<4>{ 0b0011 } | std::bitset<4>{ 0b0001 }) << '\n'; return 0; }
+# include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0111 } | std::bitset<4>{ 0b0011 } | std::bitset<4>{ 0b0001 }) << '\n'; return 0; }
 
 This prints:
 
-This prints:
 ```
 0111
 ```
@@ -600,7 +572,6 @@ This prints:
 0111
 Bitwise AND
 
-Bitwise AND
 Bitwise AND (&) works similarly to the above, except it uses AND logic instead of OR logic. That is, for each pair of bits in the operands, Bitwise AND sets the resulting bit to true (1) if both paired bits are 1, and false (0) otherwise.
 
 **Bitwise AND**
@@ -630,9 +601,9 @@ Consider the expression
 0 1 0 1 AND 0 1 1 0 -------- 0 1 0 0
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -642,11 +613,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0101 } & std::bitset<4>{ 0b0110 }) << '\n'; return 0; }
+# include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0101 } & std::bitset<4>{ 0b0110 }) << '\n'; return 0; }
 
 This prints:
 
-This prints:
 ```
 0100
 ```
@@ -672,9 +642,9 @@ Similarly, we can do the same thing to compound bitwise AND expressions, such as
 0 0 0 1 AND 0 0 1 1 AND 0 1 1 1 -------- 0 0 0 1
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -684,11 +654,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0001 } & std::bitset<4>{ 0b0011 } & std::bitset<4>{ 0b0111 }) << '\n'; return 0; }
+# include <bitset> #include <iostream> int main() { std::cout << (std::bitset<4>{ 0b0001 } & std::bitset<4>{ 0b0011 } & std::bitset<4>{ 0b0111 }) << '\n'; return 0; }
 
 This prints:
 
-This prints:
 ```
 0001
 ```
@@ -696,7 +665,6 @@ This prints:
 0001
 Bitwise XOR
 
-Bitwise XOR
 The last operator is the bitwise XOR (^), also known as exclusive or.
 
 The last operator is the
@@ -760,10 +728,8 @@ bits in a column, the result is
 0 0 0 1 XOR 0 0 1 1 XOR 0 1 1 1 -------- 0 1 0 1
 Bitwise assignment operators
 
-Bitwise assignment operators
 Similar to the arithmetic assignment operators, C++ provides bitwise assignment operators. These do modify the left operand.
 
-Similar to the arithmetic assignment operators, C++ provides bitwise assignment operators. These do modify the left operand.
 Operator | Symbol | Form | The operation modifies the left operand where:
 left shift | << | x <<= n | the bits in x are shifted left by n positions, new bits are 0.
 right shift | >> | x >>= n | the bits in x are shifted right by n positions, new bits are 0.
@@ -832,9 +798,9 @@ For example, instead of writing
 .
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -846,11 +812,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> int main() { std::bitset<4> bits { 0b0100 }; bits >>= 1; std::cout << bits << '\n'; return 0; }
+# include <bitset> #include <iostream> int main() { std::bitset<4> bits { 0b0100 }; bits >>= 1; std::cout << bits << '\n'; return 0; }
 
 This program prints:
 
-This program prints:
 ```
 0010
 ```
@@ -858,7 +823,6 @@ This program prints:
 0010
 As an aside…
 
-As an aside…
 There is no bitwise NOT assignment operator. This is because the other bitwise operators are binary, but bitwise NOT is unary (so what would go on the right-hand side of a ~= operator?). If you want to flip all of the bits of an object, you can use normal assignment: x = ~x;
 
 There is no bitwise NOT assignment operator. This is because the other bitwise operators are binary, but bitwise NOT is unary (so what would go on the right-hand side of a
@@ -890,15 +854,12 @@ or
 .
 In many cases, this won’t matter.
 
-In many cases, this won’t matter.
 Related content
 
-Related content
 We cover integral promotion in lesson 10.2 -- Floating-point and integral promotion.
 
 We cover integral promotion in lesson
-[10.2 -- Floating-point and integral promotion](https://www.learncpp.com/cpp-tutorial/floating-point-and-integral-promotion/)
-10.2 -- Floating-point and integral promotion
+[[10.2 -- Floating-point and integral promotion]]
 .
 However, when using bitwise operators on integral types narrower than int or unsigned int, there are two cases to watch out for:
 
@@ -921,24 +882,23 @@ or
 to a smaller integral type may result in data loss). This is disallowed in list initialization, and your compiler may or may not complain about a narrowing assignment.
 The following program exhibits these issues (assuming 32-bit ints):
 
-The following program exhibits these issues (assuming 32-bit ints):
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
     std::uint8_t c { 0b00001111 };
-    
+
     std::cout << std::bitset<32>(~c) << '\n';     // incorrect: prints 11111111111111111111111111110000
     std::cout << std::bitset<32>(c << 6) << '\n'; // incorrect: prints 0000000000000000001111000000
     std::uint8_t cneg { ~c };                     // error: narrowing conversion from unsigned int to std::uint8_t
     c = ~c;                                       // possible warning: narrowing conversion from unsigned int to std::uint8_t
- 
+
     return 0;
 }
 ```
@@ -948,11 +908,11 @@ These issues can be addressed by using
 to convert the result of your bitwise operation back to the narrower integral type. The following program produces the correct results:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -962,7 +922,7 @@ std::cout << std::bitset<32>(static_cast<std::uint8_t>(~c)) << '\n';     // corr
     std::cout << std::bitset<32>(static_cast<std::uint8_t>(c << 6)) << '\n'; // correct: prints 0000000000000000000011000000
     std::uint8_t cneg { static_cast<std::uint8_t>(~c) };                     // compiles
     c = static_cast<std::uint8_t>(~c);                                       // no warning
- 
+
     return 0;
 }
 ```
@@ -985,7 +945,6 @@ are width-sensitive and may produce different results depending on the width of 
 the result of such bitwise operations back to the narrower integral type before using to ensure correct results.
 Best practice
 
-Best practice
 Avoid bit shifting on integral types smaller than int whenever possible.
 
 Avoid bit shifting on integral types smaller than
@@ -993,22 +952,17 @@ Avoid bit shifting on integral types smaller than
 whenever possible.
 Summary
 
-Summary
 Summarizing how to evaluate bitwise operations utilizing the column method:
 
-Summarizing how to evaluate bitwise operations utilizing the column method:
 When evaluating bitwise OR, if any bit in a column is 1, the result for that column is 1. When evaluating bitwise AND, if all bits in a column are 1, the result for that column is 1. When evaluating bitwise XOR, if there are an odd number of 1 bits in a column, the result for that column is 1.
 
 When evaluating bitwise XOR, if there are an odd number of 1 bits in a column, the result for that column is 1.
 In the next lesson, we’ll explore how these operators can be used in conjunction with bit masks to facilitate bit manipulation.
 
-In the next lesson, we’ll explore how these operators can be used in conjunction with bit masks to facilitate bit manipulation.
 Quiz time
 
-Quiz time
 Question #1
 
-Question #1
 a) What does 0110 >> 2 evaluate to in binary?
 
 0110 >> 2 evaluates to 0001
@@ -1062,12 +1016,11 @@ instead. Implement a function that does a left rotate on a
 . For this one, it’s okay to use test() and set().
 The following code should execute:
 
-The following code should execute:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 // "rotl" stands for "rotate left"
 std::bitset<4> rotl(std::bitset<4> bits)
@@ -1087,11 +1040,10 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> // "rotl" stands for "rotate left" std::bitset<4> rotl(std::bitset<4> bits) { // Your code here } int main() { std::bitset<4> bits1{ 0b0001 }; std::cout << rotl(bits1) << '\n'; std::bitset<4> bits2{ 0b1001 }; std::cout << rotl(bits2) << '\n'; return 0; }
+# include <bitset> #include <iostream> // "rotl" stands for "rotate left" std::bitset<4> rotl(std::bitset<4> bits) { // Your code here } int main() { std::bitset<4> bits1{ 0b0001 }; std::cout << rotl(bits1) << '\n'; std::bitset<4> bits2{ 0b1001 }; std::cout << rotl(bits2) << '\n'; return 0; }
 
 and print the following:
 
-and print the following:
 ```
 0010
 0011
@@ -1101,9 +1053,9 @@ and print the following:
 
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 std::bitset<4> rotl(std::bitset<4> bits)
 {
@@ -1131,14 +1083,13 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> std::bitset<4> rotl(std::bitset<4> bits) { // keep track of whether the leftmost bit was a 1 const bool leftbit{ bits.test(3) }; bits <<= 1; // do left shift (which shifts the leftmost bit off the end) // if the left bit was a 1 if (leftbit) bits.set(0); // set the rightmost bit to a 1 return bits; } int main() { std::bitset<4> bits1{ 0b0001 }; std::cout << rotl(bits1) << '\n'; std::bitset<4> bits2{ 0b1001 }; std::cout << rotl(bits2) << '\n'; return 0; }
+# include <bitset> #include <iostream> std::bitset<4> rotl(std::bitset<4> bits) { // keep track of whether the leftmost bit was a 1 const bool leftbit{ bits.test(3) }; bits <<= 1; // do left shift (which shifts the leftmost bit off the end) // if the left bit was a 1 if (leftbit) bits.set(0); // set the rightmost bit to a 1 return bits; } int main() { std::bitset<4> bits1{ 0b0001 }; std::cout << rotl(bits1) << '\n'; std::bitset<4> bits2{ 0b1001 }; std::cout << rotl(bits2) << '\n'; return 0; }
 
 We have named the function “rotl” rather than “rotateLeft”, because “rotl” is a well-established name in computer science and also the name of the standard function, std::rotl.
 
 Question #3
 Extra credit: Redo quiz #2 but don’t use the test and set functions (use bitwise operators).
 
-Extra credit: Redo quiz #2 but don’t use the test and set functions (use bitwise operators).
 Show Hint
 
 [Show Hint](javascript:void(0))
@@ -1152,9 +1103,9 @@ Hint: Consider a “shift” in your perspective
 
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 // h/t to reader Chris for this solution
 std::bitset<4> rotl(std::bitset<4> bits)
@@ -1176,14 +1127,14 @@ return 0;
 }
 ```
 
-#include <bitset> #include <iostream> // h/t to reader Chris for this solution std::bitset<4> rotl(std::bitset<4> bits) { // bits << 1 does the left shift // bits >> 3 handle the rotation of the leftmost bit return (bits<<1) | (bits>>3); } int main() { std::bitset<4> bits1{ 0b0001 }; std::cout << rotl(bits1) << '\n'; std::bitset<4> bits2{ 0b1001 }; std::cout << rotl(bits2) << '\n'; return 0; }
+# include <bitset> #include <iostream> // h/t to reader Chris for this solution std::bitset<4> rotl(std::bitset<4> bits) { // bits << 1 does the left shift // bits >> 3 handle the rotation of the leftmost bit return (bits<<1) | (bits>>3); } int main() { std::bitset<4> bits1{ 0b0001 }; std::cout << rotl(bits1) << '\n'; std::bitset<4> bits2{ 0b1001 }; std::cout << rotl(bits2) << '\n'; return 0; }
 
-[Next lesson O.3Bit manipulation with bitwise operators and bit masks](https://www.learncpp.com/cpp-tutorial/bit-manipulation-with-bitwise-operators-and-bit-masks/)
+[[Next lesson O.3Bit manipulation with bitwise operators and bit masks]]
 Next lesson
 O.3
 Bit manipulation with bitwise operators and bit masks
 [Back to table of contents](/)
-[Previous lesson O.1Bit flags and bit manipulation via std::bitset](https://www.learncpp.com/cpp-tutorial/bit-flags-and-bit-manipulation-via-stdbitset/)
+[[Previous lesson O.1Bit flags and bit manipulation via std::bitset]]
 Previous lesson
 O.1
 Bit flags and bit manipulation via std::bitset

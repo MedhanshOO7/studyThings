@@ -1,19 +1,16 @@
 B.4 — Introduction to C++20
-What is C++20?
-
 **What is C++20?**
+
 In February of 2020, the ISO (International Organization for Standardization) approved a new version of C++, called C++20. C++20 contains the most changes to the language since C++11.
 
 In February of 2020, the
 [ISO (International Organization for Standardization)](https://www.iso.org/home.html)
 ISO (International Organization for Standardization)
 approved a new version of C++, called C++20. C++20 contains the most changes to the language since C++11.
-New improvements in C++20
-
 **New improvements in C++20**
-For your interest, here’s a list of the major changes that C++20 adds. Note that this list is not comprehensive, but rather intended to highlight some of the key changes of interest.
 
 For your interest, here’s a list of the major changes that C++20 adds. Note that this list is not comprehensive, but rather intended to highlight some of the key changes of interest.
+
 - Abbreviated function templates via auto parameters (11.8 -- Function templates with multiple template types)
 - Chrono extensions for calendar and time zone support (no tutorial yet)
 - Concepts, which allow you to put constraints on template parameters (no tutorial yet)
@@ -37,8 +34,7 @@ For your interest, here’s a list of the major changes that C++20 adds. Note th
 - Views (no tutorial yet)
 
 Abbreviated function templates via auto parameters (
-[11.8 -- Function templates with multiple template types](https://www.learncpp.com/cpp-tutorial/function-templates-with-multiple-template-types/)
-11.8 -- Function templates with multiple template types
+[[11.8 -- Function templates with multiple template types]]
 )
 Chrono extensions for calendar and time zone support (no tutorial yet)
 Concepts, which allow you to put constraints on template parameters (no tutorial yet)
@@ -48,12 +44,10 @@ Constexpr try-catch (no tutorial yet)
 Constinit keyword, to assert that a variable has static initialization (no tutorial yet)
 Coroutines (no tutorial yet)
 Designated initializers (
-[13.8 -- Struct aggregate initialization](https://www.learncpp.com/cpp-tutorial/struct-aggregate-initialization/)
-13.8 -- Struct aggregate initialization
+[[13.8 -- Struct aggregate initialization]]
 )
 Immediate functions using the consteval keyword (
-[F.1 -- Constexpr functions](https://www.learncpp.com/cpp-tutorial/constexpr-functions/)
-F.1 -- Constexpr functions
+[[F.1 -- Constexpr functions]]
 )
 Modules, a replacement for #include (no tutorial yet)
 Ranges (no tutorial yet)
@@ -68,16 +62,15 @@ https://en.cppreference.com/w/cpp/utility/format
 String literals as template parameters (no tutorial yet)
 Three-way comparison using the spaceship operator <=> (no tutorial yet)
 Using scoped enums (
-[13.6 -- Scoped enumerations (enum classes)](https://www.learncpp.com/cpp-tutorial/scoped-enumerations-enum-classes/)
-13.6 -- Scoped enumerations (enum classes)
+[[13.6 -- Scoped enumerations (enum classes)]]
 )
 Views (no tutorial yet)
-[Next lesson B.5Introduction to C++23](https://www.learncpp.com/cpp-tutorial/introduction-to-c23/)
+[[Next lesson B.5Introduction to C++23]]
 Next lesson
 B.5
 Introduction to C++23
 [Back to table of contents](/)
-[Previous lesson B.3Introduction to C++17](https://www.learncpp.com/cpp-tutorial/introduction-to-c17/)
+[[Previous lesson B.3Introduction to C++17]]
 Previous lesson
 B.3
 Introduction to C++17

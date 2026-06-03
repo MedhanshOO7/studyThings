@@ -27,29 +27,25 @@ There are also many new classes in the C++ standard library available for use.
 Better support for multi-threading and thread-local storage (no tutorial yet)
 Hash tables (no tutorial yet)
 Random number generation improvements (basic discussion in
-[8.14 -- Generating random numbers using Mersenne Twister](https://www.learncpp.com/cpp-tutorial/generating-random-numbers-using-mersenne-twister/)
-8.14 -- Generating random numbers using Mersenne Twister
+[[8.14 -- Generating random numbers using Mersenne Twister]]
 )
 Reference wrappers (
-[25.9 -- Object slicing](https://www.learncpp.com/cpp-tutorial/object-slicing/)
-25.9 -- Object slicing
+[[25.9 -- Object slicing]]
 )
 Regular expressions (no tutorial yet)
 std::auto_ptr has been deprecated (
-[22.1 -- Introduction to smart pointers and move semantics](https://www.learncpp.com/cpp-tutorial/introduction-to-smart-pointers-move-semantics/)
-22.1 -- Introduction to smart pointers and move semantics
+[[22.1 -- Introduction to smart pointers and move semantics]]
 )
 std::tuple (no tutorial yet)
 std::unique_ptr (
-[22.5 -- std::unique_ptr](https://www.learncpp.com/cpp-tutorial/stdunique_ptr/)
-22.5 -- std::unique_ptr
+[[22.5 -- std::unique_ptr]]
 )
-[Next lessonB.2Introduction to C++14](https://www.learncpp.com/cpp-tutorial/introduction-to-c14/)
+[[Next lessonB.2Introduction to C++14]]
 Next lesson
 B.2
 Introduction to C++14
 [Back to table of contents](/)
-[Previous lessonA.4C++ FAQ](https://www.learncpp.com/cpp-tutorial/cpp-faq/)
+[[Previous lessonA.4C++ FAQ]]
 Previous lesson
 A.4
 C++ FAQ

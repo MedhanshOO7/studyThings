@@ -3,7 +3,6 @@
 There are certain questions that tend to get asked over and over. This FAQ will attempt to answer the most common ones.
 Q1: Why shouldn’t we use “using namespace std”?
 
-Q1: Why shouldn’t we use “using namespace std”?
 The statement using namespace std; is a using directive. A using-directive allows all of the identifiers from a given namespace to be accessed within the scope of the using-directive statement.
 
 The statement
@@ -13,10 +12,9 @@ is a
 . A using-directive allows all of the identifiers from a given namespace to be accessed within the scope of the using-directive statement.
 You may have seen something like this:
 
-You may have seen something like this:
 ```cpp
 
-#include <iostream>
+# include <iostream>
 
 using namespace std;
 
@@ -28,7 +26,7 @@ return 0;
 }
 ```
 
-#include <iostream> using namespace std; int main() { cout << "Hello world!"; return 0; }
+# include <iostream> using namespace std; int main() { cout << "Hello world!"; return 0; }
 
 This allows us to use names from the std namespace without having to explicitly type std:: over and over. In the above program, we can just type cout instead of std::cout. Sounds great, right?
 
@@ -57,16 +55,13 @@ For these reasons, we recommend avoiding
 (or any other using-directive) entirely. The small savings in typing isn’t worth the additional headaches and future risks.
 Related content
 
-Related content
 See lesson 7.13 -- Using declarations and using directives for more detail and examples.
 
 See lesson
-[7.13 -- Using declarations and using directives](https://www.learncpp.com/cpp-tutorial/using-declarations-and-using-directives/)
-7.13 -- Using declarations and using directives
+[[7.13 -- Using declarations and using directives]]
 for more detail and examples.
 Q2: Why can I use some function or type without including the header that declares that function or type?
 
-Q2: Why can I use some function or type without including the header that declares that function or type?
 For example, many readers ask why their program that uses std::string_view needs to #include <string_view> when it seems to work fine without the #include.
 
 For example, many readers ask why their program that uses
@@ -76,7 +71,6 @@ needs to
 when it seems to work fine without the #include.
 Headers can #include other headers. When you #include a header, you also get all of the additional headers that it includes (and all of the headers that those headers include too). All of the additional headers that come along for the ride that you didn’t explicitly include are called “transitive includes”.
 
-Headers can #include other headers. When you #include a header, you also get all of the additional headers that it includes (and all of the headers that those headers include too). All of the additional headers that come along for the ride that you didn’t explicitly include are called “transitive includes”.
 In your main.cpp file, you probably #include <iostream>. On your compiler, if your <iostream> header includes the <string_view> header (for its own use), then when you #include <iostream> you will get the contents of the <string_view> header (and any other headers that <iostream> includes). This means your main.cpp will be able to use the std::string_view type without explicitly including <string_view> header.
 
 In your
@@ -92,25 +86,19 @@ will be able to use the
 type without explicitly including <string_view> header.
 Even though this may compile on your compiler, you should not rely on this. What compiles for you now may not compile on another compiler, or even on a future version of your compiler.
 
-Even though this may compile on your compiler, you should not rely on this. What compiles for you now may not compile on another compiler, or even on a future version of your compiler.
 There is no way to warn when this happens, or prevent it from happening. The best you can do is take care to explicitly include the proper headers for all of the things you use. Compiling your program on several different compilers may help identify headers that are being transitively included on other compilers.
 
-There is no way to warn when this happens, or prevent it from happening. The best you can do is take care to explicitly include the proper headers for all of the things you use. Compiling your program on several different compilers may help identify headers that are being transitively included on other compilers.
 Related content
 
-Related content
 Covered in lesson 2.11 -- Header files.
 
 Covered in lesson
-[2.11 -- Header files](https://www.learncpp.com/cpp-tutorial/header-files/)
-2.11 -- Header files
+[[2.11 -- Header files]]
 .
 Q3: My code that produces undefined behavior appears to be working fine. Is this okay?
 
-Q3: My code that produces undefined behavior appears to be working fine. Is this okay?
 aka: “I did that thing you told me not to do, and it worked. So what’s the issue?”
 
-aka: “I did that thing you told me not to do, and it worked. So what’s the issue?”
 Undefined behavior occurs when you perform an operation whose behavior is not defined by the C++ language. Code implementing undefined behavior may exhibit any of the following symptoms:
 
 Undefined behavior occurs when you perform an operation whose behavior is not defined by the C++ language. Code implementing undefined behavior may exhibit
@@ -135,52 +123,39 @@ Your program works until you change some other seemingly unrelated code.
 Your program appears to produce the desired result anyway.
 One of the biggest problems with undefined behavior is that the behavior exhibited by the program may change at any point, for any reason. So while such code may appear to work now, there is no guarantee it will do so when run again later.
 
-One of the biggest problems with undefined behavior is that the behavior exhibited by the program may change at any point, for any reason. So while such code may appear to work now, there is no guarantee it will do so when run again later.
 Related content
 
-Related content
 Undefined behavior is covered in lesson 1.6 -- Uninitialized variables and undefined behavior.
 
 Undefined behavior is covered in lesson
-[1.6 -- Uninitialized variables and undefined behavior](https://www.learncpp.com/cpp-tutorial/uninitialized-variables-and-undefined-behavior/)
-1.6 -- Uninitialized variables and undefined behavior
+[[1.6 -- Uninitialized variables and undefined behavior]]
 .
 Q4: Why does my code that produces undefined behavior generate a certain result?
 
-Q4: Why does my code that produces undefined behavior generate a certain result?
 Readers often ask what is happening to produce a specific result on their system. In most cases, it’s difficult to say, as the result produced may be dependent upon the current program state, your compiler settings, how the compiler implements a feature, the computer’s architecture, and/or the operating system. For example, if you print the value of an uninitialized variable, you might get garbage, or you might always get a particular value. It depends on what type of variable it is, how the compiler lays out the variable in memory, and what’s in that memory beforehand (which might be impacted by the OS or the state of the program prior to that point).
 
-Readers often ask what is happening to produce a specific result on their system. In most cases, it’s difficult to say, as the result produced may be dependent upon the current program state, your compiler settings, how the compiler implements a feature, the computer’s architecture, and/or the operating system. For example, if you print the value of an uninitialized variable, you might get garbage, or you might always get a particular value. It depends on what type of variable it is, how the compiler lays out the variable in memory, and what’s in that memory beforehand (which might be impacted by the OS or the state of the program prior to that point).
 And while such an answer may be interesting mechanically, it’s rarely useful overall (and likely to change if and when anything else changes). It’s like asking, “When I put my seat belt through the steering wheel and connect it to the accelerator, why does the car pull left when I turn my head on a rainy day?” The best answer isn’t a physical explanation of what’s occurring, it’s “don’t do that”.
 
-And while such an answer may be interesting mechanically, it’s rarely useful overall (and likely to change if and when anything else changes). It’s like asking, “When I put my seat belt through the steering wheel and connect it to the accelerator, why does the car pull left when I turn my head on a rainy day?” The best answer isn’t a physical explanation of what’s occurring, it’s “don’t do that”.
 Q5: Why am I getting a compile error when I try to compile an example that seems like it should work?
 
-Q5: Why am I getting a compile error when I try to compile an example that seems like it should work?
 The most common reason for this is that your project is being compiled using the wrong language standard.
 
-The most common reason for this is that your project is being compiled using the wrong language standard.
 C++ introduces many new features with each new language standard. If one of our examples uses a feature that was introduced in C++17, but your program is compiling using the C++14 language standard, then it probably won’t compile because the feature we’re using isn’t supported by the language standard we’ve selected.
 
-C++ introduces many new features with each new language standard. If one of our examples uses a feature that was introduced in C++17, but your program is compiling using the C++14 language standard, then it probably won’t compile because the feature we’re using isn’t supported by the language standard we’ve selected.
 Try setting your language standard to the latest version your compiler supports and see if that resolves the issue. You can also check that your compiler is properly configured to use the language standard you’re expecting by running the program here: 0.13 -- What language standard is my compiler using?.
 
 Try setting your language standard to the latest version your compiler supports and see if that resolves the issue. You can also check that your compiler is properly configured to use the language standard you’re expecting by running the program here:
-[0.13 -- What language standard is my compiler using?](https://www.learncpp.com/cpp-tutorial/what-language-standard-is-my-compiler-using/)
-0.13 -- What language standard is my compiler using?
+[[0.13 -- What language standard is my compiler using?]]
 .
 Related content
 
-Related content
 Covered in lesson 0.12 -- Configuring your compiler: Choosing a language standard.
 
 Covered in lesson
-[0.12 -- Configuring your compiler: Choosing a language standard](https://www.learncpp.com/cpp-tutorial/configuring-your-compiler-choosing-a-language-standard/)
-0.12 -- Configuring your compiler: Choosing a language standard
+[[0.12 -- Configuring your compiler: Choosing a language standard]]
 .
 It is also possible that your compiler either doesn’t support a specific feature yet, or has a bug preventing use in some cases. In this case, try updating your compiler to the latest version available.
 
-It is also possible that your compiler either doesn’t support a specific feature yet, or has a bug preventing use in some cases. In this case, try updating your compiler to the latest version available.
 The CPPReference website tracks compiler support for each feature per language standard. You can find those support tables linked from their home page, top right, under “Compiler Support” (by language standard). For example, you can see which C++23 features are supported here.
 
 The CPPReference website tracks compiler support for each feature per language standard. You can find those support tables linked from their
@@ -192,34 +167,25 @@ here
 .
 Q6: Why should I #include “foo.h” from foo.cpp?
 
-Q6: Why should I #include “foo.h” from foo.cpp?
 It is a best practice for a source file (e.g. foo.cpp) to include its paired header (e.g. foo.h). In many cases, foo.h will contain definitions that foo.cpp will need to compile correctly.
 
-It is a best practice for a source file (e.g. foo.cpp) to include its paired header (e.g. foo.h). In many cases, foo.h will contain definitions that foo.cpp will need to compile correctly.
 However, even if foo.cpp compiles file without foo.h, including the paired header allows the compiler to discover certain types of inconsistencies between the two files (e.g. when the return type of a function doesn’t match the return type of its forward declaration). Without the inclusion, this might cause undefined behavior.
 
-However, even if foo.cpp compiles file without foo.h, including the paired header allows the compiler to discover certain types of inconsistencies between the two files (e.g. when the return type of a function doesn’t match the return type of its forward declaration). Without the inclusion, this might cause undefined behavior.
 The cost of the #include is negligible, so there is little downside to including the header.
 
-The cost of the #include is negligible, so there is little downside to including the header.
 Related content
 
-Related content
 Covered in lesson 2.11 -- Header files.
 
 Covered in lesson
-[2.11 -- Header files](https://www.learncpp.com/cpp-tutorial/header-files/#corresponding_include)
-2.11 -- Header files
+[[2.11 -- Header files]]
 .
 Q7: Why does my project only compile when I #include “foo.cpp” from “main.cpp”?
 
-Q7: Why does my project only compile when I #include “foo.cpp” from “main.cpp”?
 This is almost always due to forgetting to add foo.cpp to your project and/or compilation command line. Update your project and/or command line to include each source (.cpp) file. When you compile your project, you should see each source file being compiled.
 
-This is almost always due to forgetting to add foo.cpp to your project and/or compilation command line. Update your project and/or command line to include each source (.cpp) file. When you compile your project, you should see each source file being compiled.
 Normally in a project that has multiple files, the compiler will compile each source (.cpp) file individually. After all the source files have been compiled, the linker links them together and creates the resulting output file (e.g. an executable). However, if you split your code between two or more files (e.g. main.cpp and foo.cpp) and then only compiles main.cpp, you will probably get a compilation error or linker error, since part of the code required for your project is not being compiled.
 
-Normally in a project that has multiple files, the compiler will compile each source (.cpp) file individually. After all the source files have been compiled, the linker links them together and creates the resulting output file (e.g. an executable). However, if you split your code between two or more files (e.g. main.cpp and foo.cpp) and then only compiles main.cpp, you will probably get a compilation error or linker error, since part of the code required for your project is not being compiled.
 New programmers sometimes discover that they can make their program work by adding #include "foo.cpp" to main.cpp instead of adding foo.cpp to the project or compilation command line. After doing so, when main.cpp is compiled, the will preprocessor will create a translation unit consisting of the code from both foo.cpp and main.cpp, which will then be compiled and linked. In smaller project, this may work. So why not do this?
 
 New programmers sometimes discover that they can make their program work by adding
@@ -227,7 +193,6 @@ New programmers sometimes discover that they can make their program work by addi
 to main.cpp instead of adding foo.cpp to the project or compilation command line. After doing so, when main.cpp is compiled, the will preprocessor will create a translation unit consisting of the code from both foo.cpp and main.cpp, which will then be compiled and linked. In smaller project, this may work. So why not do this?
 There are a few reasons:
 
-There are a few reasons:
 1. It can result in naming collisions between files.
 2. It can be hard to avoid ODR violations.
 3. Any change to any .cpp file will result in your entire project being recompiled. This can take a long time.
@@ -237,12 +202,10 @@ It can be hard to avoid ODR violations.
 Any change to any .cpp file will result in your entire project being recompiled. This can take a long time.
 Related content
 
-Related content
 Covered in lesson 2.11 -- Header files.
 
 Covered in lesson
-[2.11 -- Header files](https://www.learncpp.com/cpp-tutorial/header-files/#includecpp)
-2.11 -- Header files
+[[2.11 -- Header files]]
 .
 Q8: Why do I need to return 0 at the bottom of main?
 
@@ -256,7 +219,6 @@ You don’t. The
 function is special in that it will implicitly return 0 if you do not provide a return statement.
 However, any other value-returning function that reaches the end of its body without encountering a return statement will produce undefined behavior.
 
-However, any other value-returning function that reaches the end of its body without encountering a return statement will produce undefined behavior.
 For consistency, we recommend explicitly returning 0 from main(). But if you prefer to omit the return statement in main() for conciseness, you can. Just don’t make the mistake of thinking other value-returning functions work similarly.
 
 For consistency, we recommend explicitly returning 0 from
@@ -266,25 +228,20 @@ For consistency, we recommend explicitly returning 0 from
 for conciseness, you can. Just don’t make the mistake of thinking other value-returning functions work similarly.
 Related content
 
-Related content
 Covered in lesson 2.2 -- Function return values (value-returning functions).
 
 Covered in lesson
-[2.2 -- Function return values (value-returning functions)](https://www.learncpp.com/cpp-tutorial/function-return-values-value-returning-functions/)
-2.2 -- Function return values (value-returning functions)
+[[2.2 -- Function return values (value-returning functions)]]
 .
 Q9: When I compile an example from this website, I get an error similar to “argument list for class template XXX is missing”. Why?
 
-Q9: When I compile an example from this website, I get an error similar to “argument list for class template XXX is missing”. Why?
 The most likely reason is that the example makes use of a feature called Class Template Argument Deduction (CTAD), which is a C++17 feature. Many compilers default to C++14, which doesn’t support this feature.
 
-The most likely reason is that the example makes use of a feature called Class Template Argument Deduction (CTAD), which is a C++17 feature. Many compilers default to C++14, which doesn’t support this feature.
 If the following program doesn’t compile for you, that’s the reason:
 
-If the following program doesn’t compile for you, that’s the reason:
 ```cpp
 
-#include <utility> // for std::pair
+# include <utility> // for std::pair
 
 int main()
 {
@@ -294,26 +251,22 @@ return 0;
 }
 ```
 
-#include <utility> // for std::pair int main() { std::pair p2{ 1, 2 }; // CTAD used to deduce std::pair<int, int> from the initializers (C++17) return 0; }
+# include <utility> // for std::pair int main() { std::pair p2{ 1, 2 }; // CTAD used to deduce std::pair<int, int> from the initializers (C++17) return 0; }
 
 Related content
 
-Related content
 You can check which language standard your compiler is configured for using the program in lesson 0.13 -- What language standard is my compiler using?.
 
 You can check which language standard your compiler is configured for using the program in lesson
-[0.13 -- What language standard is my compiler using?](https://www.learncpp.com/cpp-tutorial/what-language-standard-is-my-compiler-using/)
-0.13 -- What language standard is my compiler using?
+[[0.13 -- What language standard is my compiler using?]]
 .
 We cover CTAD in lesson 13.14 -- Class template argument deduction (CTAD) and deduction guides.
 
 We cover CTAD in lesson
-[13.14 -- Class template argument deduction (CTAD) and deduction guides](https://www.learncpp.com/cpp-tutorial/class-template-argument-deduction-ctad-and-deduction-guides/)
-13.14 -- Class template argument deduction (CTAD) and deduction guides
+[[13.14 -- Class template argument deduction (CTAD) and deduction guides]]
 .
 Q10: Why don’t we make function parameters or return types const when passing or returning by value?
 
-Q10: Why don’t we make function parameters or return types const when passing or returning by value?
 We typically don’t const by-value function parameters because:
 
 We typically don’t
@@ -343,18 +296,14 @@ Note:
 is relevant when passing/returning by address or by reference.
 Related content
 
-Related content
 Covered in lesson 5.1 -- Constant variables (named constants)
 
 Covered in lesson
-[5.1 -- Constant variables (named constants)](https://www.learncpp.com/cpp-tutorial/constant-variables-named-constants/)
-5.1 -- Constant variables (named constants)
+[[5.1 -- Constant variables (named constants)]]
 Q11: Why should I use constexpr?
 
-Q11: Why should I use constexpr?
 Constexpr and other compile-time programming techniques provide many benefits, including:
 
-Constexpr and other compile-time programming techniques provide many benefits, including:
 - Smaller and faster code.
 - We can have the compiler detect certain kinds of errors and halt compilation if they occur.
 - Undefined behavior is not allowed at compile-time.
@@ -366,21 +315,16 @@ Undefined behavior is not allowed at compile-time.
 The ability to use variables and functions in places that require a constant expression.
 The last point is perhaps the most unavoidable, as certain C++ features require values that are known at compile-time.
 
-The last point is perhaps the most unavoidable, as certain C++ features require values that are known at compile-time.
 Related content
 
-Related content
 Covered in lesson 5.5 -- Constant expressions
 
 Covered in lesson
-[5.5 -- Constant expressions](https://www.learncpp.com/cpp-tutorial/constant-expressions/)
-5.5 -- Constant expressions
+[[5.5 -- Constant expressions]]
 Q12: Why should I constexpr an eligible function when I know it will only be evaluated at runtime in my program?
 
-Q12: Why should I constexpr an eligible function when I know it will only be evaluated at runtime in my program?
 There are a few reasons you might want to do so:
 
-There are a few reasons you might want to do so:
 1. There’s little downside to using constexpr, and it may help the compiler optimize even in contexts where it isn’t evaluated at compile-time.
 2. Just because you’re not calling the function in a compile-time evaluatable context right now doesn’t mean you won’t call it in such a context when you modify or extend your program. And if you haven’t constexpr’d the function already, you may not think to when you do start to call it in such a context, and then you’ll miss out on the performance benefits. Or you may be forced to constexpr it later when you need to use the return value in a context that requires a constant expression somewhere.
 3. Repetition helps ingrain best practices.
@@ -390,21 +334,16 @@ Just because you’re not calling the function in a compile-time evaluatable con
 Repetition helps ingrain best practices.
 On a non-trivial project, it’s a good idea to implement your functions with the mindset that they may be reused (or extended) in the future. Any time you modify an existing function, you risk breaking it, and that means it needs to be retested, which takes time and energy. It’s often worth spending an extra minute or two “doing it right the first time” so you don’t have to redo (and retest) it again later.
 
-On a non-trivial project, it’s a good idea to implement your functions with the mindset that they may be reused (or extended) in the future. Any time you modify an existing function, you risk breaking it, and that means it needs to be retested, which takes time and energy. It’s often worth spending an extra minute or two “doing it right the first time” so you don’t have to redo (and retest) it again later.
 Related content
 
-Related content
 Covered in lesson F.1 -- Constexpr functions
 
 Covered in lesson
-[F.1 -- Constexpr functions](https://www.learncpp.com/cpp-tutorial/constexpr-functions/#constexprruntimeeval)
-F.1 -- Constexpr functions
+[[F.1 -- Constexpr functions]]
 Q13: Why shouldn’t I call the same input function more than once in an expression?
 
-Q13: Why shouldn’t I call the same input function more than once in an expression?
 In most cases, the C++ standard does not specify the order in which operands (including function arguments) are evaluated. The precedence and associativity of operators is used only to determine how operands are grouped with operators, and the order of value computation.
 
-In most cases, the C++ standard does not specify the order in which operands (including function arguments) are evaluated. The precedence and associativity of operators is used only to determine how operands are grouped with operators, and the order of value computation.
 For example, given the statement std::cout << subtract(getUserInput(), getUserInput()), either the left argument or the right argument in the function call to subtract() could be evaluated first. Let’s say the user inputs the values 5 and 2. If the left argument was evaluated first, the left argument will evaluate to 5, and the right argument will evaluate to 2. 5 - 2 is 3. If the right argument was evaluated first, the right argument will evaluate to 5, and the left argument will evaluate to 2. 2 - 5 is -3. Thus, this statement might print either 3 or -3.
 
 For example, given the statement
@@ -443,15 +382,12 @@ This can be disambiguated by making each function call to
 a separate statement (so the order is deterministic), and storing the return value in a variable until it is needed.
 Related content
 
-Related content
 Covered in lesson 6.1 -- Operator precedence and associativity
 
 Covered in lesson
-[6.1 -- Operator precedence and associativity](https://www.learncpp.com/cpp-tutorial/operator-precedence-and-associativity/#unspecified)
-6.1 -- Operator precedence and associativity
+[[6.1 -- Operator precedence and associativity]]
 Q14: There aren’t enough quizzes! Where can I get more practice?
 
-Q14: There aren’t enough quizzes! Where can I get more practice?
 We recommend https://www.codewars.com/, which has plenty of bite-sized exercises to help improve your general problem-solving and C++ implementation skills. It’s also fun!
 
 We recommend
@@ -460,19 +396,16 @@ https://www.codewars.com/
 , which has plenty of bite-sized exercises to help improve your general problem-solving and C++ implementation skills. It’s also fun!
 Once you have a solution, you can compare it with the answers of others to see alternative approaches, or understand where your own code might be improved.
 
-Once you have a solution, you can compare it with the answers of others to see alternative approaches, or understand where your own code might be improved.
 However, because disposable exercises have disposable answers, solving such quizzes doesn’t really encourage writing high quality code, or demonstrate what happens when you don’t follow best practices. For that, nothing is better than creating your own project.
 
-However, because disposable exercises have disposable answers, solving such quizzes doesn’t really encourage writing high quality code, or demonstrate what happens when you don’t follow best practices. For that, nothing is better than creating your own project.
 Start with something small -- a simple game or simulation. Then layer in features over time. As the complexity of your project increases, you’ll start the see the various deficiencies in your code show up. This will help you identify what areas of your code are in need of quality improvements.
 
-Start with something small -- a simple game or simulation. Then layer in features over time. As the complexity of your project increases, you’ll start the see the various deficiencies in your code show up. This will help you identify what areas of your code are in need of quality improvements.
-[Next lesson B.1Introduction to C++11](https://www.learncpp.com/cpp-tutorial/introduction-to-c11/)
+[[Next lesson B.1Introduction to C++11]]
 Next lesson
 B.1
 Introduction to C++11
 [Back to table of contents](/)
-[Previous lesson A.3Using libraries with Code::Blocks](https://www.learncpp.com/cpp-tutorial/a3-using-libraries-with-codeblocks/)
+[[Previous lesson A.3Using libraries with Code::Blocks]]
 Previous lesson
 A.3
 Using libraries with Code::Blocks

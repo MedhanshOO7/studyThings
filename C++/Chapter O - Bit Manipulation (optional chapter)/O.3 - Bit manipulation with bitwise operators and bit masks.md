@@ -2,15 +2,12 @@ O.3 — Bit manipulation with bitwise operators and bit masks
 In the previous lesson on bitwise operators (O.2 -- Bitwise operators), we discussed how the various bitwise operators apply logical operators to each bit within the operands. Now that we understand how they function, let’s take a look at how they’re more commonly used.
 
 In the previous lesson on bitwise operators (
-[O.2 -- Bitwise operators](https://www.learncpp.com/cpp-tutorial/bitwise-operators/)
-O.2 -- Bitwise operators
+[[O.2 -- Bitwise operators]]
 ), we discussed how the various bitwise operators apply logical operators to each bit within the operands. Now that we understand how they function, let’s take a look at how they’re more commonly used.
 Bit masks
 
-Bit masks
 In order to manipulate individual bits (e.g. turn them on or off), we need some way to identify the specific bits we want to manipulate. Unfortunately, the bitwise operators don’t know how to work with bit positions. Instead they work with bit masks.
 
-In order to manipulate individual bits (e.g. turn them on or off), we need some way to identify the specific bits we want to manipulate. Unfortunately, the bitwise operators don’t know how to work with bit positions. Instead they work with bit masks.
 A bit mask is a predefined set of bits that is used to select which specific bits will be modified by subsequent operations.
 
 A
@@ -18,32 +15,25 @@ A
 is a predefined set of bits that is used to select which specific bits will be modified by subsequent operations.
 Consider a real-life case where you want to paint a window frame. If you’re not careful, you risk painting not only the window frame, but also the glass itself. You might buy some masking tape and apply it to the glass and any other parts you don’t want painted. Then when you paint, the masking tape blocks the paint from reaching anything you don’t want painted. In the end, only the non-masked parts (the parts you want painted) get painted.
 
-Consider a real-life case where you want to paint a window frame. If you’re not careful, you risk painting not only the window frame, but also the glass itself. You might buy some masking tape and apply it to the glass and any other parts you don’t want painted. Then when you paint, the masking tape blocks the paint from reaching anything you don’t want painted. In the end, only the non-masked parts (the parts you want painted) get painted.
 A bit mask essentially performs the same function for bits -- the bit mask blocks the bitwise operators from touching bits we don’t want modified, and allows access to the ones we do want modified.
 
-A bit mask essentially performs the same function for bits -- the bit mask blocks the bitwise operators from touching bits we don’t want modified, and allows access to the ones we do want modified.
 Let’s first explore how to define some simple bit masks, and then we’ll show you how to use them.
 
-Let’s first explore how to define some simple bit masks, and then we’ll show you how to use them.
 Defining bit masks in C++14
 
-Defining bit masks in C++14
 The simplest set of bit masks is to define one bit mask for each bit position. We use 0s to mask out the bits we don’t care about, and 1s to denote the bits we want modified.
 
-The simplest set of bit masks is to define one bit mask for each bit position. We use 0s to mask out the bits we don’t care about, and 1s to denote the bits we want modified.
 Although bit masks can be literals, they’re often defined as symbolic constants so they can be given a meaningful name and easily reused.
 
-Although bit masks can be literals, they’re often defined as symbolic constants so they can be given a meaningful name and easily reused.
 Because C++14 supports binary literals, defining these bit masks is easy:
 
-Because C++14 supports binary literals, defining these bit masks is easy:
 ```cpp
 
-#include <cstdint>
+# include <cstdint>
 
 constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0
 constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1
-constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 
+constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2
 constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3
 constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4
 constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5
@@ -54,25 +44,19 @@ constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7
 Now we have a set of symbolic constants that represents each bit position. We can use these to manipulate the bits (which we’ll show how to do in just a moment).
 Defining bit masks in C++11 or earlier
 
-Defining bit masks in C++11 or earlier
 Because C++11 doesn’t support binary literals, we have to use other methods to set the symbolic constants. There are two good methods for doing this.
 
-Because C++11 doesn’t support binary literals, we have to use other methods to set the symbolic constants. There are two good methods for doing this.
 The first method is to use hexadecimal literals.
 
-The first method is to use hexadecimal literals.
 Related content
 
-Related content
 We talk about hexadecimal in lesson 5.2 -- Literals.
 
 We talk about hexadecimal in lesson
-[5.2 -- Literals](https://www.learncpp.com/cpp-tutorial/literals/)
-5.2 -- Literals
+[[5.2 -- Literals]]
 .
 Here’s how hexadecimal converts to binary:
 
-Here’s how hexadecimal converts to binary:
 Hexadecimal | 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | A | B | C | D | E | F
 Binary | 0000 | 0001 | 0010 | 0011 | 0100 | 0101 | 0110 | 0111 | 1000 | 1001 | 1010 | 1011 | 1100 | 1101 | 1110 | 1111
 
@@ -112,7 +96,6 @@ Binary
 1111
 Therefore, we can define bit masks using hexadecimal like this:
 
-Therefore, we can define bit masks using hexadecimal like this:
 ```cpp
 constexpr std::uint8_t mask0{ 0x01 }; // hex for 0000 0001
 constexpr std::uint8_t mask1{ 0x02 }; // hex for 0000 0010
@@ -134,9 +117,8 @@ you’ll just see
 ). Either way, this can be a little hard to read if you’re not familiar with hexadecimal to binary conversion.
 An easier method is to use the left-shift operator to shift a single bit into the proper location:
 
-An easier method is to use the left-shift operator to shift a single bit into the proper location:
 ```cpp
-constexpr std::uint8_t mask0{ 1 << 0 }; // 0000 0001 
+constexpr std::uint8_t mask0{ 1 << 0 }; // 0000 0001
 constexpr std::uint8_t mask1{ 1 << 1 }; // 0000 0010
 constexpr std::uint8_t mask2{ 1 << 2 }; // 0000 0100
 constexpr std::uint8_t mask3{ 1 << 3 }; // 0000 1000
@@ -149,10 +131,8 @@ constexpr std::uint8_t mask7{ 1 << 7 }; // 1000 0000
 constexpr std::uint8_t mask0{ 1 << 0 }; // 0000 0001 constexpr std::uint8_t mask1{ 1 << 1 }; // 0000 0010 constexpr std::uint8_t mask2{ 1 << 2 }; // 0000 0100 constexpr std::uint8_t mask3{ 1 << 3 }; // 0000 1000 constexpr std::uint8_t mask4{ 1 << 4 }; // 0001 0000 constexpr std::uint8_t mask5{ 1 << 5 }; // 0010 0000 constexpr std::uint8_t mask6{ 1 << 6 }; // 0100 0000 constexpr std::uint8_t mask7{ 1 << 7 }; // 1000 0000
 Testing a bit (to see if it is on or off)
 
-Testing a bit (to see if it is on or off)
 Now that we have a set of bit masks, we can use these in conjunction with a bit flag variable to manipulate our bit flags.
 
-Now that we have a set of bit masks, we can use these in conjunction with a bit flag variable to manipulate our bit flags.
 To determine if a bit is on or off, we use bitwise AND in conjunction with the bit mask for the appropriate bit:
 
 To determine if a bit is on or off, we use
@@ -160,15 +140,15 @@ To determine if a bit is on or off, we use
 in conjunction with the bit mask for the appropriate bit:
 ```cpp
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
 	[[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0
 	[[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1
-	[[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 
+	[[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2
 	[[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3
 	[[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4
 	[[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5
@@ -184,11 +164,10 @@ return 0;
 }
 ```
 
-#include <cstdint> #include <iostream> int main() { [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0 [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1 [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3 [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4 [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5 [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6 [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7 std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags std::cout << "bit 0 is " << (static_cast<bool>(flags & mask0) ? "on\n" : "off\n"); std::cout << "bit 1 is " << (static_cast<bool>(flags & mask1) ? "on\n" : "off\n"); return 0; }
+# include <cstdint> #include <iostream> int main() { [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0 [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1 [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3 [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4 [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5 [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6 [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7 std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags std::cout << "bit 0 is " << (static_cast<bool>(flags & mask0) ? "on\n" : "off\n"); std::cout << "bit 1 is " << (static_cast<bool>(flags & mask1) ? "on\n" : "off\n"); return 0; }
 
 This prints:
 
-This prints:
 ```
 bit 0 is on
 bit 1 is off
@@ -197,7 +176,6 @@ bit 1 is off
 bit 0 is on bit 1 is off
 Let’s examine how this works.
 
-Let’s examine how this works.
 In the case of flags & mask0, we have 0000'0101 & 0000'0001. Let’s line these up:
 
 In the case of
@@ -252,27 +230,25 @@ and this value has only zero digits, this evaluates to
 .
 Setting a bit
 
-Setting a bit
 To set (turn on) a bit (to value 1), we use bitwise OR equals (operator |=) in conjunction with the bit mask for the appropriate bit:
 
-To set (turn on) a bit (to value 1), we use bitwise OR equals (operator |=) in conjunction with the bit mask for the appropriate bit:
 ```cpp
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
     [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0
     [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1
-    [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 
+    [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2
     [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3
     [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4
     [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5
     [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6
     [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7
-    
+
     std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags
 
 std::cout << "bit 1 is " << (static_cast<bool>(flags & mask1) ? "on\n" : "off\n");
@@ -285,11 +261,10 @@ return 0;
 }
 ```
 
-#include <cstdint> #include <iostream> int main() { [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0 [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1 [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3 [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4 [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5 [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6 [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7 std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags std::cout << "bit 1 is " << (static_cast<bool>(flags & mask1) ? "on\n" : "off\n"); flags |= mask1; // turn on bit 1 std::cout << "bit 1 is " << (static_cast<bool>(flags & mask1) ? "on\n" : "off\n"); return 0; }
+# include <cstdint> #include <iostream> int main() { [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0 [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1 [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3 [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4 [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5 [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6 [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7 std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags std::cout << "bit 1 is " << (static_cast<bool>(flags & mask1) ? "on\n" : "off\n"); flags |= mask1; // turn on bit 1 std::cout << "bit 1 is " << (static_cast<bool>(flags & mask1) ? "on\n" : "off\n"); return 0; }
 
 This prints:
 
-This prints:
 ```
 bit 1 is off
 bit 1 is on
@@ -308,7 +283,6 @@ flags |= (mask4 | mask5); // turn bits 4 and 5 on at the same time
 flags |= (mask4 | mask5); // turn bits 4 and 5 on at the same time
 Resetting a bit
 
-Resetting a bit
 To reset (clear) a bit (to value 0), we use Bitwise AND and Bitwise NOT together:
 
 To reset (clear) a bit (to value 0), we use
@@ -318,21 +292,21 @@ and
 together:
 ```cpp
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
     [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0
     [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1
-    [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 
+    [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2
     [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3
     [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4
     [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5
     [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6
     [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7
-    
+
     std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags
 
 std::cout << "bit 2 is " << (static_cast<bool>(flags & mask2) ? "on\n" : "off\n");
@@ -345,11 +319,10 @@ return 0;
 }
 ```
 
-#include <cstdint> #include <iostream> int main() { [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0 [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1 [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3 [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4 [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5 [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6 [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7 std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags std::cout << "bit 2 is " << (static_cast<bool>(flags & mask2) ? "on\n" : "off\n"); flags &= ~mask2; // turn off bit 2 std::cout << "bit 2 is " << (static_cast<bool>(flags & mask2) ? "on\n" : "off\n"); return 0; }
+# include <cstdint> #include <iostream> int main() { [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0 [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1 [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3 [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4 [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5 [[maybe_unused]] constexpr std::uint8_t mask6{ 0b0100'0000 }; // represents bit 6 [[maybe_unused]] constexpr std::uint8_t mask7{ 0b1000'0000 }; // represents bit 7 std::uint8_t flags{ 0b0000'0101 }; // 8 bits in size means room for 8 flags std::cout << "bit 2 is " << (static_cast<bool>(flags & mask2) ? "on\n" : "off\n"); flags &= ~mask2; // turn off bit 2 std::cout << "bit 2 is " << (static_cast<bool>(flags & mask2) ? "on\n" : "off\n"); return 0; }
 
 This prints:
 
-This prints:
 ```
 bit 2 is on
 bit 2 is off
@@ -358,7 +331,6 @@ bit 2 is off
 bit 2 is on bit 2 is off
 We can turn off multiple bits at the same time:
 
-We can turn off multiple bits at the same time:
 ```cpp
 flags &= ~(mask4 | mask5); // turn bits 4 and 5 off at the same time
 ```
@@ -366,10 +338,8 @@ flags &= ~(mask4 | mask5); // turn bits 4 and 5 off at the same time
 flags &= ~(mask4 | mask5); // turn bits 4 and 5 off at the same time
 Key insight
 
-Key insight
 Some compilers may complain about a sign conversion with this line:
 
-Some compilers may complain about a sign conversion with this line:
 ```
 flags &= ~mask2;
 ```
@@ -392,7 +362,6 @@ to undergo integral promotion to type
 where the left operand is unsigned and the right operand is signed.
 If this is the case, try the following:
 
-If this is the case, try the following:
 ```cpp
 flags &= static_cast<std::uint8_t>(~mask2);
 ```
@@ -401,12 +370,10 @@ flags &= static_cast<std::uint8_t>(~mask2);
 We discuss this issue in lesson O.2 -- Bitwise operators.
 
 We discuss this issue in lesson
-[O.2 -- Bitwise operators](https://www.learncpp.com/cpp-tutorial/bitwise-operators/)
-O.2 -- Bitwise operators
+[[O.2 -- Bitwise operators]]
 .
 Flipping a bit
 
-Flipping a bit
 To toggle (flip) a bit state (from 0 to 1 or from 1 to 0), we use Bitwise XOR:
 
 To toggle (flip) a bit state (from 0 to 1 or from 1 to 0), we use
@@ -414,15 +381,15 @@ To toggle (flip) a bit state (from 0 to 1 or from 1 to 0), we use
 :
 ```cpp
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
     [[maybe_unused]] constexpr std::uint8_t mask0{ 0b0000'0001 }; // represents bit 0
     [[maybe_unused]] constexpr std::uint8_t mask1{ 0b0000'0010 }; // represents bit 1
-    [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2 
+    [[maybe_unused]] constexpr std::uint8_t mask2{ 0b0000'0100 }; // represents bit 2
     [[maybe_unused]] constexpr std::uint8_t mask3{ 0b0000'1000 }; // represents bit 3
     [[maybe_unused]] constexpr std::uint8_t mask4{ 0b0001'0000 }; // represents bit 4
     [[maybe_unused]] constexpr std::uint8_t mask5{ 0b0010'0000 }; // represents bit 5
@@ -443,7 +410,6 @@ return 0;
 
 This prints:
 
-This prints:
 ```
 bit 2 is on
 bit 2 is off
@@ -453,7 +419,6 @@ bit 2 is on
 bit 2 is on bit 2 is off bit 2 is on
 We can flip multiple bits simultaneously:
 
-We can flip multiple bits simultaneously:
 ```cpp
 flags ^= (mask4 | mask5); // flip bits 4 and 5 at the same time
 ```
@@ -461,24 +426,21 @@ flags ^= (mask4 | mask5); // flip bits 4 and 5 at the same time
 flags ^= (mask4 | mask5); // flip bits 4 and 5 at the same time
 Bit masks and std::bitset
 
-Bit masks and std::bitset
 std::bitset supports the full set of bitwise operators. So even though it’s easier to use the functions (test, set, reset, and flip) to modify individual bits, you can use bitwise operators and bit masks if you want.
 
-std::bitset supports the full set of bitwise operators. So even though it’s easier to use the functions (test, set, reset, and flip) to modify individual bits, you can use bitwise operators and bit masks if you want.
 Why would you want to? The functions only allow you to modify individual bits. The bitwise operators allow you to modify multiple bits at once.
 
-Why would you want to? The functions only allow you to modify individual bits. The bitwise operators allow you to modify multiple bits at once.
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
 	[[maybe_unused]] constexpr std::bitset<8> mask0{ 0b0000'0001 }; // represents bit 0
 	[[maybe_unused]] constexpr std::bitset<8> mask1{ 0b0000'0010 }; // represents bit 1
-	[[maybe_unused]] constexpr std::bitset<8> mask2{ 0b0000'0100 }; // represents bit 2 
+	[[maybe_unused]] constexpr std::bitset<8> mask2{ 0b0000'0100 }; // represents bit 2
 	[[maybe_unused]] constexpr std::bitset<8> mask3{ 0b0000'1000 }; // represents bit 3
 	[[maybe_unused]] constexpr std::bitset<8> mask4{ 0b0001'0000 }; // represents bit 4
 	[[maybe_unused]] constexpr std::bitset<8> mask5{ 0b0010'0000 }; // represents bit 5
@@ -507,7 +469,6 @@ return 0;
 
 This prints:
 
-This prints:
 ```
 bit 1 is off
 bit 2 is on
@@ -522,18 +483,15 @@ bit 2 is off
 bit 1 is off bit 2 is on bit 1 is on bit 2 is off bit 1 is on bit 2 is on bit 1 is off bit 2 is off
 Making bit masks meaningful
 
-Making bit masks meaningful
 Naming our bit masks “mask1” or “mask2” tells us what bit is being manipulated, but doesn’t give us any indication of what that bit flag is actually being used for.
 
-Naming our bit masks “mask1” or “mask2” tells us what bit is being manipulated, but doesn’t give us any indication of what that bit flag is actually being used for.
 A best practice is to give your bit masks useful names as a way to document the meaning of your bit flags. Here’s an example from a game we might write:
 
-A best practice is to give your bit masks useful names as a way to document the meaning of your bit flags. Here’s an example from a game we might write:
 ```cpp
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -564,9 +522,9 @@ return 0;
 Here’s the same example implemented using std::bitset:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -598,19 +556,14 @@ Two notes here: First, std::bitset doesn’t have a nice function that allows yo
 to query bits. Second, we make use of the any() function, which returns true if any bits are set, and false otherwise to see if the bit we queried remains on or off.
 When are bit flags most useful?
 
-When are bit flags most useful?
 Astute readers may note that the above examples don’t actually save any memory. 8 separate booleans values would normally take 8 bytes. But the examples above (using std::uint8_t) use 9 bytes -- 8 bytes to define the bit masks, and 1 byte for the flag variable!
 
-Astute readers may note that the above examples don’t actually save any memory. 8 separate booleans values would normally take 8 bytes. But the examples above (using std::uint8_t) use 9 bytes -- 8 bytes to define the bit masks, and 1 byte for the flag variable!
 Bit flags make the most sense when you have many identical flag variables. For example, in the example above, imagine that instead of having one person (me), you had 100. If you used 8 Booleans per person (one for each possible state), you’d use 800 bytes of memory. With bit flags, you’d use 8 bytes for the bit masks, and 100 bytes for the bit flag variables, for a total of 108 bytes of memory -- approximately 8 times less memory.
 
-Bit flags make the most sense when you have many identical flag variables. For example, in the example above, imagine that instead of having one person (me), you had 100. If you used 8 Booleans per person (one for each possible state), you’d use 800 bytes of memory. With bit flags, you’d use 8 bytes for the bit masks, and 100 bytes for the bit flag variables, for a total of 108 bytes of memory -- approximately 8 times less memory.
 For most programs, the amount of memory saved using bit flags is not worth the added complexity. But in programs where there are tens of thousands or even millions of similar objects, using bit flags can reduce memory use substantially. It’s a useful optimization to have in your toolkit if you need it.
 
-For most programs, the amount of memory saved using bit flags is not worth the added complexity. But in programs where there are tens of thousands or even millions of similar objects, using bit flags can reduce memory use substantially. It’s a useful optimization to have in your toolkit if you need it.
 There’s another case where bit flags and bit masks can make sense. Imagine you had a function that could take any combination of 32 different options. One way to write that function would be to use 32 individual Boolean parameters:
 
-There’s another case where bit flags and bit masks can make sense. Imagine you had a function that could take any combination of 32 different options. One way to write that function would be to use 32 individual Boolean parameters:
 ```cpp
 void someFunction(bool option1, bool option2, bool option3, bool option4, bool option5, bool option6, bool option7, bool option8, bool option9, bool option10, bool option11, bool option12, bool option13, bool option14, bool option15, bool option16, bool option17, bool option18, bool option19, bool option20, bool option21, bool option22, bool option23, bool option24, bool option25, bool option26, bool option27, bool option28, bool option29, bool option30, bool option31, bool option32);
 ```
@@ -618,10 +571,8 @@ void someFunction(bool option1, bool option2, bool option3, bool option4, bool o
 void someFunction(bool option1, bool option2, bool option3, bool option4, bool option5, bool option6, bool option7, bool option8, bool option9, bool option10, bool option11, bool option12, bool option13, bool option14, bool option15, bool option16, bool option17, bool option18, bool option19, bool option20, bool option21, bool option22, bool option23, bool option24, bool option25, bool option26, bool option27, bool option28, bool option29, bool option30, bool option31, bool option32);
 Hopefully you’d give your parameters more descriptive names, but the point here is to show you how obnoxiously long the parameter list is.
 
-Hopefully you’d give your parameters more descriptive names, but the point here is to show you how obnoxiously long the parameter list is.
 Then when you wanted to call the function with options 10 and 32 set to true, you’d have to do so like this:
 
-Then when you wanted to call the function with options 10 and 32 set to true, you’d have to do so like this:
 ```cpp
 someFunction(false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true);
 ```
@@ -629,10 +580,8 @@ someFunction(false, false, false, false, false, false, false, false, false, true
 someFunction(false, false, false, false, false, false, false, false, false, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, true);
 This is ridiculously difficult to read (is that option 9, 10, or 11 that’s set to true?), and also means you have to remember which argument corresponds to which option (is setting the “edit flag” the 9th, 10th, or 11th parameter?).
 
-This is ridiculously difficult to read (is that option 9, 10, or 11 that’s set to true?), and also means you have to remember which argument corresponds to which option (is setting the “edit flag” the 9th, 10th, or 11th parameter?).
 Instead, if you defined the function using bit flags like this:
 
-Instead, if you defined the function using bit flags like this:
 ```cpp
 void someFunction(std::bitset<32> options);
 ```
@@ -640,7 +589,6 @@ void someFunction(std::bitset<32> options);
 void someFunction(std::bitset<32> options);
 Then you could use bit flags to pass in only the options you wanted:
 
-Then you could use bit flags to pass in only the options you wanted:
 ```cpp
 someFunction(option10 | option32);
 ```
@@ -648,13 +596,10 @@ someFunction(option10 | option32);
 someFunction(option10 | option32);
 This is much more readable.
 
-This is much more readable.
 This is one of the reasons OpenGL, a well regarded 3d graphic library, opted to use bit flag parameters instead of many consecutive Boolean parameters.
 
-This is one of the reasons OpenGL, a well regarded 3d graphic library, opted to use bit flag parameters instead of many consecutive Boolean parameters.
 Here’s a sample function call from OpenGL:
 
-Here’s a sample function call from OpenGL:
 ```cpp
 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the color and the depth buffer
 ```
@@ -662,35 +607,29 @@ glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the color and the d
 glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the color and the depth buffer
 GL_COLOR_BUFFER_BIT and GL_DEPTH_BUFFER_BIT are bit masks defined as follows (in gl2.h):
 
-GL_COLOR_BUFFER_BIT and GL_DEPTH_BUFFER_BIT are bit masks defined as follows (in gl2.h):
 ```cpp
 
-#define GL_DEPTH_BUFFER_BIT               0x00000100
+# define GL_DEPTH_BUFFER_BIT               0x00000100
 
-#define GL_STENCIL_BUFFER_BIT             0x00000400
+# define GL_STENCIL_BUFFER_BIT             0x00000400
 
-#define GL_COLOR_BUFFER_BIT               0x00004000
+# define GL_COLOR_BUFFER_BIT               0x00004000
 
 ```
 
-#define GL_DEPTH_BUFFER_BIT 0x00000100 #define GL_STENCIL_BUFFER_BIT 0x00000400 #define GL_COLOR_BUFFER_BIT 0x00004000
+# define GL_DEPTH_BUFFER_BIT 0x00000100 #define GL_STENCIL_BUFFER_BIT 0x00000400 #define GL_COLOR_BUFFER_BIT 0x00004000
 
 Bit masks involving multiple bits
 Although bit masks often are used to select a single bit, they can also be used to select multiple bits. Lets take a look at a slightly more complicated example where we do this.
 
-Although bit masks often are used to select a single bit, they can also be used to select multiple bits. Lets take a look at a slightly more complicated example where we do this.
 Color display devices such as TVs and monitors are composed of millions of pixels, each of which can display a dot of color. Each dot of color is the result of combining three beams of light: one red, one green, and one blue (RGB). The intensity of these lights are varied to produce different colors.
 
-Color display devices such as TVs and monitors are composed of millions of pixels, each of which can display a dot of color. Each dot of color is the result of combining three beams of light: one red, one green, and one blue (RGB). The intensity of these lights are varied to produce different colors.
 Typically, the intensity of R, G, and B for a given pixel is represented by an 8-bit unsigned integer. For example, a red pixel would have R=255, G=0, B=0. A purple pixel would have R=255, G=0, B=255. A medium-grey pixel would have R=127, G=127, B=127.
 
-Typically, the intensity of R, G, and B for a given pixel is represented by an 8-bit unsigned integer. For example, a red pixel would have R=255, G=0, B=0. A purple pixel would have R=255, G=0, B=255. A medium-grey pixel would have R=127, G=127, B=127.
 When assigning color values to a pixel, in addition to R, G, and B, a 4th value called A is often used. “A” stands for “alpha”, and it controls how transparent the color is. If A=0, the color is fully transparent. If A=255, the color is opaque.
 
-When assigning color values to a pixel, in addition to R, G, and B, a 4th value called A is often used. “A” stands for “alpha”, and it controls how transparent the color is. If A=0, the color is fully transparent. If A=255, the color is opaque.
 R, G, B, and A are normally stored as a single 32-bit integer, with 8 bits used for each component:
 
-R, G, B, and A are normally stored as a single 32-bit integer, with 8 bits used for each component:
 32-bit RGBA value
 bits 31-24 | bits 23-16 | bits 15-8 | bits 7-0
 RRRRRRRR | GGGGGGGG | BBBBBBBB | AAAAAAAA
@@ -711,12 +650,11 @@ blue
 alpha
 The following program asks the user to enter a 32-bit hexadecimal value, and then extracts the 8-bit color values for R, G, B, and A.
 
-The following program asks the user to enter a 32-bit hexadecimal value, and then extracts the 8-bit color values for R, G, B, and A.
 ```cpp
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -770,10 +708,8 @@ to query the set of 8 bits we’re interested in, and then we
 them into an 8-bit value so we can print them back as hex values.
 Summary
 
-Summary
 Summarizing how to set, clear, toggle, and query bit flags:
 
-Summarizing how to set, clear, toggle, and query bit flags:
 To query bit states, we use bitwise AND:
 
 To query bit states, we use
@@ -821,10 +757,8 @@ flags ^= (option4 | option5); // flip options 4 and 5
 flags ^= option4; // flip option4 from on to off, or vice versa flags ^= (option4 | option5); // flip options 4 and 5
 Quiz time
 
-Quiz time
 Question #1
 
-Question #1
 Do not use std::bitset in this quiz. We’re only using std::bitset for printing.
 
 Do not use
@@ -834,14 +768,13 @@ in this quiz. We’re only using
 for printing.
 Given the following program:
 
-Given the following program:
 ```cpp
 
-#include <bitset>
+# include <bitset>
 
-#include <cstdint>
+# include <cstdint>
 
-#include <iostream>
+# include <iostream>
 
 int main()
 {
@@ -912,7 +845,6 @@ That you cleared
 .
 1d) Extra credit: why are the following two lines identical?
 
-1d) Extra credit: why are the following two lines identical?
 ```cpp
 myflags &= ~(option4 | option5); // turn options 4 and 5 off
 ```
@@ -922,12 +854,12 @@ De Morgan’s laws says that if we distribute a NOT, we need to flip ORs and AND
 becomes
 `~option4 & ~option5`
 .
-[Next lesson O.4Converting integers between binary and decimal representation](https://www.learncpp.com/cpp-tutorial/converting-integers-between-binary-and-decimal-representation/)
+[[Next lesson O.4Converting integers between binary and decimal representation]]
 Next lesson
 O.4
 Converting integers between binary and decimal representation
 [Back to table of contents](/)
-[Previous lesson O.2Bitwise operators](https://www.learncpp.com/cpp-tutorial/bitwise-operators/)
+[[Previous lesson O.2Bitwise operators]]
 Previous lesson
 O.2
 Bitwise operators

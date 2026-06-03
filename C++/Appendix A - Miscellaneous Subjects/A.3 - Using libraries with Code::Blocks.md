@@ -9,15 +9,14 @@ Tell the linker where to look for the library file(s) for the library (if there 
 
 Tell the linker which static or import library files to link (if there are any).
 
-#include the library’s header file(s) in your program.
+# include the library’s header file(s) in your program.
 
 Make sure the program know where to find any dynamic libraries being used.
 
 **Steps 1 and 2 -- Acquire and install library**
 
 Download and install the library to your hard disk. See the tutorial on
-[static and dynamic libraries](https://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/)
-static and dynamic libraries
+[[static and dynamic libraries]]
 for more information about this step.
 
 **Steps 3 and 4 -- Tell the compiler where to find headers and library files**
@@ -51,15 +50,14 @@ B) Click the linker tab. Under the “Link libraries” window, press the “Add
 C) Press the “OK” buttonSteps 6 and 7 -- #include header files and make sure project can find DLLsSimply #include the header file(s) from the library in your project.See the tutorial A.1 -- static and dynamic libraries for more information step 7.Next lessonA.4C++ FAQBack to table of contentsPrevious lessonA.2Using libraries with Visual Studio
 
 See the tutorial
-[A.1 -- static and dynamic libraries](https://www.learncpp.com/cpp-tutorial/a1-static-and-dynamic-libraries/)
-A.1 -- static and dynamic libraries
+[[A.1 -- static and dynamic libraries]]
 for more information step 7.
-[Next lessonA.4C++ FAQ](https://www.learncpp.com/cpp-tutorial/cpp-faq/)
+[[Next lessonA.4C++ FAQ]]
 Next lesson
 A.4
 C++ FAQ
 [Back to table of contents](/)
-[Previous lessonA.2Using libraries with Visual Studio](https://www.learncpp.com/cpp-tutorial/a2-using-libraries-with-visual-studio-2005-express/)
+[[Previous lessonA.2Using libraries with Visual Studio]]
 Previous lesson
 A.2
 Using libraries with Visual Studio

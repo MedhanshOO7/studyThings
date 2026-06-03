@@ -104,18 +104,17 @@ also has a lot of challenging problems to solve.
 Don’t stop when you’ve got something working. Spend some time refining your code (e.g. refactoring, removing redundancy). Measure the speed of your solution (see 18.4 -- Timing your code) and then see if you can find ways to optimize your code so it performs faster!A good bye!At this point, I’d like to take a moment to thank you for stopping by and reading this tutorial series. I hope you enjoyed your time here and have found this site useful. Special thanks to those of you who have helped keep this website a free resource available to everyone by viewing ads that interest you. Please drop by again!Good luck (and skill) in your future endeavors, and happy programming! And remember, old programmers never die -- they just go out of scope.-AlexPS: If you have any feedback or other suggestions for things to explore next, please mention them in the comment section below.Next lesson21.1The Standard LibraryBack to table of contentsPrevious lessonB.5Introduction to C++23
 
 Don’t stop when you’ve got something working. Spend some time refining your code (e.g. refactoring, removing redundancy). Measure the speed of your solution (see
-[18.4 -- Timing your code](https://www.learncpp.com/cpp-tutorial/timing-your-code/)
-18.4 -- Timing your code
+[[18.4 -- Timing your code]]
 ) and then see if you can find ways to optimize your code so it performs faster!
 A good bye!At this point, I’d like to take a moment to thank you for stopping by and reading this tutorial series. I hope you enjoyed your time here and have found this site useful. Special thanks to those of you who have helped keep this website a free resource available to everyone by viewing ads that interest you. Please drop by again!Good luck (and skill) in your future endeavors, and happy programming! And remember, old programmers never die -- they just go out of scope.-AlexPS: If you have any feedback or other suggestions for things to explore next, please mention them in the comment section below.Next lesson21.1The Standard LibraryBack to table of contentsPrevious lessonB.5Introduction to C++23
 
 PS: If you have any feedback or other suggestions for things to explore next, please mention them in the comment section below.
-[Next lesson21.1The Standard Library](https://www.learncpp.com/cpp-tutorial/the-standard-library/)
+[[Next lesson21.1The Standard Library]]
 Next lesson
 21.1
 The Standard Library
 [Back to table of contents](/)
-[Previous lessonB.5Introduction to C++23](https://www.learncpp.com/cpp-tutorial/introduction-to-c23/)
+[[Previous lessonB.5Introduction to C++23]]
 Previous lesson
 B.5
 Introduction to C++23

@@ -5,7 +5,7 @@ All 355 HTML files in the LearnCpp offline collection have been successfully con
 
 ## Conversion Details
 - **Source files**: 355 HTML files
-- **Target files**: 355 MD files  
+- **Target files**: 355 MD files
 - **Directory structure**: Preserved during conversion
 - **Conversion tool**: Custom Python script using BeautifulSoup4
 
