@@ -318,6 +318,41 @@ This is the clearest possible demonstration of the container vs codec distinctio
 
 ## Compression Techinques
 
-Two way to control
+Two ways to control output size
+1. **CRF** :-  Constant Rate Factor
+- You tell FFmpeg a quality level, and it figures out the bitrate automatically per-frame. File size is not guaranteed but quality is consistent.
+
+2. **CBR** :- Target Bitrate
+- You tell FFmpeg a specific bitrate, and it hits that number. File size is predictable but quality may vary.
+
+For most use cases — archiving, sharing, uploading — CRF is what you want. It's how YouTube and Netflix encode their master files too. 
+
+```bash 
+
+0 ←——————————————————————————————————————————————————→ 51
+best quality                                worst quality
+(huge file)                                 (tiny file)
+```
+
+
+For H.264:
+- 0 = lossless (enormous)
+- 18 = visually lossless (most people can't tell from original)
+- 23 = default, good balance
+- 28 = noticeably compressed but acceptable
+- 51 = unwatchable
+
+The scale is logarithmic - every +6 roughly doubles the file size, every -6 roughly halves it.
+
+```bash 
+ffmpeg -i recording_2026-04-29_23.53.40.mp4 -c:v libx264 -crf 23 -c:a copy output_compressed.mp4
+```
+
+|Part|Meaning|
+|:-|:-|
+|`-c:v libx264`| Encode video with H.264 encoder|
+|`-crf 23`|Quality level 23|
+|`-c:a copy`|Don't touch the audio, copy it as-is|
+|`output_compressed.mp4`|Stay in MP4 container|
 
 
