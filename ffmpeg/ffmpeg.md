@@ -356,3 +356,36 @@ ffmpeg -i recording_2026-04-29_23.53.40.mp4 -c:v libx264 -crf 23 -c:a copy outpu
 |`output_compressed.mp4`|Stay in MP4 container|
 
 
+## The Three types of frames
+
+### I-Frame
+A complete, self-contained image. No reference to any other frame. If you've ever seeked to a random point in a video and it snapped to a slightly different timestamp — that's because it jumped to the nearest keyframe. You cannot decode any other frame type without first having a keyframe.
+
+### P-Frame 
+Only stores the difference from the **previous frame**. If a ball moves across a static background, the P-frame only stores the ball's new position and what the background looks like where the ball used to be. Everything unchanged is just referenced from the previous frame. Much smaller than an I-frame.
+
+### B-Frame
+References both the previous AND the next frame. Even more efficient than P-frames because it can borrow from both directions. This is why keyint=250 and bframes=3 appeared in your encode — the encoder was allowed to look ahead and behind.
+
+```bash
+
+I B B P B B P B B P B B I
+↑                       ↑
+keyframe              next keyframe
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
