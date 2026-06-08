@@ -59,14 +59,11 @@ Bitrate
 
 Imagine you're describing a beautiful landscape to someone.
 
-### Model
-
-Low bitrate
-
+1. Low bitrate
 `"There is a tree."` 
 Very little information.
 
-High bitrate
+2. High bitrate
 `"There is a large oak tree with green leaves,
 a river behind it, mountains in the distance..."` 
 Much more information.
@@ -86,6 +83,8 @@ Quantization is one of the main reasons modern video compression works.
 |  104  |                    |  100 
 |  105  |                    |  100 
 |  106  |                    |  100 
+ We lost                     We compressed
+ details                     the file.
 ``` 
 
 
@@ -181,8 +180,8 @@ encoder         : Lavf62.12.100
 `2560x1600` — your exact monitor resolution
 `13477 kb/s` — video stream bitrate specifically
 `39.41 fps` — fps 
-`330 tbr` — timebase rate, the internal clock resolution FFmpeg uses to timestamp frames. You don't need to worry about this
-`90k tbn` — ticks per second of the container's internal timestamp unit. MP4 uses 90,000 ticks/second as its standard. Again, internal bookkeeping
+`330 tbr` — **timebase rate**, the internal clock resolution FFmpeg uses to timestamp frames. You don't need to worry about this
+`90k tbn` — **ticks per second** of the container's internal timestamp unit. MP4 uses 90,000 ticks/second as its standard. Again, internal bookkeeping
 `(default)` — this is the default stream that will play if you don't specify otherwise
 
 `Stream #0:1[0x2](und): Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 41 kb/s (default)` 
@@ -212,7 +211,7 @@ ffmpeg -i input.mp4 output.mkv
 FFmpeg sees that you want `.mkv` output and will try to make sensible decisions about everything else automatically.
 But here's the critical thing to understand — ==FFmpeg will re-encode by default==. It'll decode the video and re-encode it, which takes time and introduces quality loss.
 
-## `-c copy`
+## `-c copy` (The star ⭐)
 
 ```bash
 ffmpeg -i input.mp4 -c copy output.mkv
@@ -314,5 +313,11 @@ frame=2098 fps=0.0 q=-1.0 Lsize=87909KiB time=00:00:53.24 bitrate=13526.1kbits/s
 - `q=-1.0` — confirms no encoding happened (-1 means copy mode)
 - `speed=724x` — it processed the video at 724 times realtime. A 53 second video done in 0.07 seconds
 - `elapsed=0:00:00.07` — 7 milliseconds. That's how fast a remux is vs an encode
+
+This is the clearest possible demonstration of the container vs codec distinction — changing the container costs almost nothing because the actual data wasn't touched.
+
+## Compression Techinques
+
+Two way to control
 
 
